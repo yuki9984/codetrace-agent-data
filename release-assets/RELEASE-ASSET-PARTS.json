@@ -1,0 +1,40 @@
+{
+  "schema": "codetrace-release-asset-parts-v1",
+  "created_at_utc": "2026-09-11T03:31:53.802111+00:00",
+  "status": "parts_created_locally_not_uploaded",
+  "source": {
+    "name": "CodeTrace-Agent-1000-sanitized.zip",
+    "bytes": 8790519112,
+    "sha256": "ff359f3cda0f1ef5cb5b3cfb84e801592c4494e7dafff68fa964baa3f7c12d9d"
+  },
+  "part_size_limit_bytes": 1992294400,
+  "part_count": 5,
+  "parts": [
+    {
+      "name": "CodeTrace-Agent-1000-sanitized.zip.part001",
+      "bytes": 1992294400,
+      "sha256": "0a43b3de0bb6fd785b21b4863715ac41dbdfbac63e699d41b352ce0e27777948"
+    },
+    {
+      "name": "CodeTrace-Agent-1000-sanitized.zip.part002",
+      "bytes": 1992294400,
+      "sha256": "17499a5aca4dd4713e2d3f72a51d09f5393c169e6912363973f39f4fe7f80483"
+    },
+    {
+      "name": "CodeTrace-Agent-1000-sanitized.zip.part003",
+      "bytes": 1992294400,
+      "sha256": "9d6da4630f7394f35de96b6fb5f97812252e2f16e861b5c9ff9215efcd788c97"
+    },
+    {
+      "name": "CodeTrace-Agent-1000-sanitized.zip.part004",
+      "bytes": 1992294400,
+      "sha256": "c1ee099db977abdfbe9af833644afd964e979e04e7cdcab666c44a646314aa59"
+    },
+    {
+      "name": "CodeTrace-Agent-1000-sanitized.zip.part005",
+      "bytes": 821341512,
+      "sha256": "916e449c069cc4391211fbad4ae5af2519013e3f5997c603317f2c6d7b0cdf3f"
+    }
+  ],
+  "public_upload_performed": false
+}

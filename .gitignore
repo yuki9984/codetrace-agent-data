@@ -1,0 +1,11 @@
+# Large publication artifacts belong in an archival deposit or GitHub Release,
+# never in the Git repository history.
+*.zip
+*.zip.part*
+
+# Local validation output and platform noise.
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
