@@ -7,6 +7,7 @@ This public repository provides lightweight code, documentation, checksums, and 
 - Dataset version DOI assigned in a Zenodo draft: `10.5281/zenodo.22701046`.
 - The Zenodo record is not yet publicly resolvable. Treat the DOI as reserved until the record has been published and independently downloaded.
 - Frozen source dataset: Hugging Face commit `b3142c640f1766efa368dec2d1421dc1d90b210f`.
+- Publication-metadata revision: Hugging Face commit `89b1a3545deeec3ff9dc0c7bb8822c6b212660c2` (same source payload, updated README and later-replay status table).
 - Historical construction-time result: 1,000/1,000 tasks met the original release gates.
 - Later primary-host replay: 993/1,000 met the dual-gate condition; seven retained tasks have explicit failure records.
 
