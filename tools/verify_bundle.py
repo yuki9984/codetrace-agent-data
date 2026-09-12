@@ -7,6 +7,8 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Any
 
+IGNORED_TOP_LEVEL = frozenset({".git", ".huggingface", ".cache"})
+
 
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
@@ -14,6 +16,32 @@ def sha256_file(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def sha256_bytes(payload: bytes) -> str:
+    return hashlib.sha256(payload).hexdigest()
+
+
+def should_include(relative: Path) -> bool:
+    return not (set(relative.parts) & IGNORED_TOP_LEVEL)
+
+
+def collect_actual_files(root: Path, manifest_path: Path) -> dict[str, Path]:
+    """Collect payload files while excluding downloader/VCS metadata."""
+    return {
+        path.relative_to(root).as_posix(): path
+        for path in root.rglob("*")
+        if path.is_file()
+        and path != manifest_path
+        and should_include(path.relative_to(root))
+    }
+
+
+def compare_file_sets(declared: set[str], actual: set[str]) -> dict[str, list[str]]:
+    return {
+        "missing": sorted(declared - actual),
+        "unexpected": sorted(actual - declared),
+    }
 
 
 def verify(root: Path, workers: int) -> dict[str, Any]:
@@ -82,17 +110,16 @@ def verify(root: Path, workers: int) -> dict[str, Any]:
             errors.append({"code": "trajectory_sha256_mismatch", "instance_id": instance_id})
 
     declared = {str(row.get("path")): row for row in manifest.get("files", [])}
-    actual = {
-        path.relative_to(root).as_posix(): path
-        for path in root.rglob("*")
-        if path.is_file() and path != manifest_path and ".cache" not in path.parts
-    }
-    if set(declared) != set(actual):
+    actual = collect_actual_files(root, manifest_path)
+    file_set_difference = compare_file_sets(set(declared), set(actual))
+    if file_set_difference["missing"] or file_set_difference["unexpected"]:
         errors.append(
             {
                 "code": "manifest_file_set_mismatch",
                 "declared": len(declared),
                 "actual": len(actual),
+                "missing": file_set_difference["missing"][:20],
+                "unexpected": file_set_difference["unexpected"][:20],
             }
         )
 

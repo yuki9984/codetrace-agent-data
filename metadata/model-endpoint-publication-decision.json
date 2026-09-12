@@ -1,0 +1,62 @@
+{
+  "schema": "codetrace-model-endpoint-publication-decision-v1",
+  "status": "author_decision_recorded",
+  "decision": "publish_sanitized_derivative",
+  "allowed_decisions": [
+    "publish_sanitized_derivative",
+    "preserve_fixed_source_payload"
+  ],
+  "current_recommendation": "publish_sanitized_derivative",
+  "recommendation_reason": "The exact historical service endpoint is not sufficient to reproduce the hosted deployment. A versioned publication derivative removes it while retaining non-secret model and protocol metadata, and replaces the construction-only README with an English publication README that distinguishes the recorded 1,000/1,000 construction result from the later 993/1,000 replay. The fixed source revision remains unchanged as provenance.",
+  "decided_by": "author-team representative (current user authorization)",
+  "decided_at_utc": "2026-09-11T02:11:19.7463726Z",
+  "endpoint_owner_republication_authorized": false,
+  "author_team_authorized_selected_payload": true,
+  "evidence": {
+    "decision_note": "MODEL-ENDPOINT-DECISION.md",
+    "source_manifest_sha256": "9909915d332e8cefdfe66ec5a3f3b6b466fdea0555d818e985ddb8d5d0ef7312",
+    "dry_run_plan": "endpoint-sanitization-dry-run-plan.json",
+    "dry_run_plan_sha256": "418274f9cfb481703ed11ca2f46d4d69b3920dea4cc7121f48d6347f8c591f89",
+    "affected_interaction_trajectories": 273,
+    "unchanged_environment_validation_trajectories": 727,
+    "publication_readme_replacements": 1
+  },
+  "conditional_bindings": {
+    "publish_sanitized_derivative": {
+      "source_relation": "isDerivedFrom",
+      "source_revision_remains_unchanged": true,
+      "prospective_changed_trajectory_files": 273,
+      "prospective_changed_documentation_files": 1,
+      "prospective_changed_payload_members_including_index": 275,
+      "prospective_index_sha256": "d170d26b68045b1fbfffe699434a73180051dac51b6df989522be633201dfd1e",
+      "prospective_publication_readme_sha256": "d41b84f66526cf300b83427b62fa28a8e9d2a63ee6b42b2a6ddeaca9af85c21f",
+      "prospective_manifest_sha256": "3662096b3dd57fd50766636a16034dac9ce328ad43e5351b3664ca1cd382b044",
+      "requires_new_version_and_transformation_receipt": true,
+      "requires_endpoint_owner_republication_authorization": false
+    },
+    "preserve_fixed_source_payload": {
+      "source_relation": "isAlternateIdentifier",
+      "source_revision_remains_unchanged": true,
+      "selected_manifest_sha256": "9909915d332e8cefdfe66ec5a3f3b6b466fdea0555d818e985ddb8d5d0ef7312",
+      "requires_new_version_and_transformation_receipt": false,
+      "requires_endpoint_owner_republication_authorization": true
+    }
+  },
+  "selected_payload_binding": {
+    "source_relation": "isDerivedFrom",
+    "source_revision_remains_unchanged": true,
+    "prospective_changed_trajectory_files": 273,
+    "prospective_changed_documentation_files": 1,
+    "prospective_changed_payload_members_including_index": 275,
+    "prospective_index_sha256": "d170d26b68045b1fbfffe699434a73180051dac51b6df989522be633201dfd1e",
+    "prospective_publication_readme_sha256": "d41b84f66526cf300b83427b62fa28a8e9d2a63ee6b42b2a6ddeaca9af85c21f",
+    "prospective_manifest_sha256": "3662096b3dd57fd50766636a16034dac9ce328ad43e5351b3664ca1cd382b044",
+    "requires_new_version_and_transformation_receipt": true,
+    "requires_endpoint_owner_republication_authorization": false
+  },
+  "dataset_derivative_created": false,
+  "frozen_source_modified": false,
+  "repository_draft_created": false,
+  "doi_reserved": false,
+  "public_upload_performed": false
+}

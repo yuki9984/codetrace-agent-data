@@ -12,6 +12,15 @@ This public repository provides lightweight code, documentation, checksums, and 
 
 These statements describe different validation times. This repository does not claim that all 1,000 tasks currently execute successfully on every host.
 
+The Zenodo archive is a sanitized publication derivative of the fixed Hugging Face source revision, not a byte-identical mirror. It removes a historical hosted-service endpoint from 273 agent-interaction trajectories, replaces the publication README, and rebinds the affected trajectory hashes and index. Task source snapshots, tests, reference repairs, and environment-validation records are unchanged by this sanitization. The fixed source remains available for provenance.
+
+Registered manifest SHA-256 values:
+
+- Hugging Face fixed source: `9909915d332e8cefdfe66ec5a3f3b6b466fdea0555d818e985ddb8d5d0ef7312`
+- Current Zenodo draft derivative: `3662096b3dd57fd50766636a16034dac9ce328ad43e5351b3664ca1cd382b044`
+
+Use `tools/check_dataset.py` to identify either registered edition before running the full verifier. The verifier ignores top-level `.git/`, `.huggingface/`, and `.cache/` client metadata but continues to reject missing, added, or modified payload files.
+
 ## Prepared archive
 
 Expected file:
@@ -27,9 +36,13 @@ After Zenodo publication, download the archive from the version record and verif
 
 - `checksums/`: checksum for the complete sanitized ZIP.
 - `metadata/instance-status.json`: machine-readable status for all 1,000 tasks.
+- `metadata/sanitization-transformation-receipt.json`: source-to-derivative manifest binding and changed-file counts.
+- `metadata/model-endpoint-publication-decision.json`: recorded rationale and scope for endpoint sanitization.
 - `tools/verify_bundle.py`: bundle verification utility.
 - `docs/`: integrity, reuse, and optional fallback instructions.
 - `release-assets/`: manifest for an optional five-part mirror. The parts are unnecessary while Zenodo is available and are excluded from Git history.
+
+The draft archive embeds an earlier copy of `verify_bundle.py`. It correctly verifies a clean directory extracted from the Zenodo ZIP, but it does not ignore `.git/` or `.huggingface/` metadata added by other download methods. For all reuse routes, use the versioned verifier in this repository. This tooling correction does not alter the archived data payload or its registered manifest.
 
 ## Reuse boundary
 
